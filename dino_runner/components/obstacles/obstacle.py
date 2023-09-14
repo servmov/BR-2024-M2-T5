@@ -1,3 +1,4 @@
+import random
 import pygame
 from pygame.sprite import Sprite
 
