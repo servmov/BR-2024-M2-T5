@@ -3,7 +3,7 @@ import random
 
 from dino_runner.components.obstacles.cactus import Cactus
 from dino_runner.components.obstacles.bird import Bird
-from dino_runner.utils.constants import HAMMER_TYPE, RESET_SPEED_TYPE
+from dino_runner.utils.constants import HAMMER_TYPE, RESET_SPEED_TYPE, DEATH_SOUND
 
 
 class ObstacleManager:
@@ -27,6 +27,7 @@ class ObstacleManager:
                     pygame.time.delay(500)
                     game.playing = False
                     game.death_count += 1
+                    self.death_play()
                     break
                 else:
                     if game.player.type == HAMMER_TYPE:
@@ -41,3 +42,8 @@ class ObstacleManager:
     def draw(self, screen):
         for obstacle in self.obstacles:
             obstacle.draw(screen)
+    
+    def death_play(self):
+        pygame.mixer.music.load(DEATH_SOUND)
+        pygame.mixer.music.play()
+        pygame.mixer.music.set_volume == 60 

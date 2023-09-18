@@ -65,6 +65,7 @@ CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 RESET_SPEED = pygame.image.load(os.path.join(IMG_DIR, 'Other/reset_speed.png'))
+DEATH_SOUND = "dino_runner/assets/Sounds/death_sound.wav"
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 

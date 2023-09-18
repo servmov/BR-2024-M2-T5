@@ -53,7 +53,7 @@ class Game:
                 self.playing = False
 
     def update(self):
-        print("VELOCIDADE: ", self.game_speed)
+     #   print("VELOCIDADE: ", self.game_speed)
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
         self.obstacle_manager.update(self)
