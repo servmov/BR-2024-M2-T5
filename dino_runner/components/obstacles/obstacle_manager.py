@@ -3,7 +3,7 @@ import random
 
 from dino_runner.components.obstacles.cactus import Cactus
 from dino_runner.components.obstacles.bird import Bird
-from dino_runner.utils.constants import HAMMER_TYPE
+from dino_runner.utils.constants import HAMMER_TYPE, RESET_SPEED_TYPE
 
 
 class ObstacleManager:
@@ -20,6 +20,7 @@ class ObstacleManager:
             self.obstacles.append(obstacle_type[random.randint(0, 1)])
 
         for obstacle in self.obstacles:
+            print("type", game.player.type)
             obstacle.update(game.game_speed, self.obstacles)
             if game.player.dino_rect.colliderect(obstacle.rect):
                 if not game.player.has_power_up:
@@ -30,6 +31,9 @@ class ObstacleManager:
                 else:
                     if game.player.type == HAMMER_TYPE:
                         self.obstacles.remove(obstacle)
+                    elif game.player.type == RESET_SPEED_TYPE:
+                        game.game_speed = 20
+
 
     def reset_obstacles(self):
         self.obstacles = []

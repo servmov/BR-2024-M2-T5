@@ -1,12 +1,15 @@
 import random
 import pygame
+from dino_runner.utils.constants import RESET_SPEED_TYPE
 
 from dino_runner.components.power_ups.shield import Shield
 from dino_runner.components.power_ups.hammer import Hammer
+from dino_runner.components.power_ups.reset_speed import ResetSpeed
 
 DEFAULT_POWER_UP = [
     Shield(),
-    Hammer()
+    Hammer(),
+    ResetSpeed()
 ]
 
 class PowerUpManager:
@@ -17,7 +20,7 @@ class PowerUpManager:
     def generate_power_up(self, score):
         if len(self.power_ups) == 0 and self.when_appears == score:
             self.when_appears += random.randint(200, 300)
-            self.power_ups.append(DEFAULT_POWER_UP[random.randint(0, 1)])
+            self.power_ups.append(DEFAULT_POWER_UP[random.randint(0, 2)])
 
     def update(self, game):
         self.generate_power_up(game.score)
@@ -28,6 +31,8 @@ class PowerUpManager:
                 game.player.has_power_up = True
                 game.player.type = power_up.type
                 game.player.power_up_time = power_up.start_time + (power_up.duration * 1000)
+                if game.player.type == RESET_SPEED_TYPE:
+                    game.player.power_up_time = power_up.start_time + (power_up.duration * 600)
                 self.power_ups.remove(power_up)
 
 
