@@ -32,12 +32,14 @@ class ObstacleManager:
                 else:
                     if game.player.type == HAMMER_TYPE:
                         self.obstacles.remove(obstacle)
-                    elif game.player.type == RESET_SPEED_TYPE:
-                        game.game_speed = 20
-                        pygame.time.delay(2000)
-                        game.playing = False
-                        game.death_count += 1
-                        self.death_play()
+                        
+            if game.player.type == RESET_SPEED_TYPE:
+                game.game_speed = 20
+                if game.player.dino_rect.colliderect(obstacle.rect):
+                    self.death_play()
+                    pygame.time.delay(2000)
+                    game.playing = False
+                    game.death_count += 1
 
     def reset_obstacles(self):
         self.obstacles = []

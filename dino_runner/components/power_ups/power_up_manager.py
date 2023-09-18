@@ -31,8 +31,6 @@ class PowerUpManager:
                 game.player.has_power_up = True
                 game.player.type = power_up.type
                 game.player.power_up_time = power_up.start_time + (power_up.duration * 1000)
-                if game.player.type == RESET_SPEED_TYPE:
-                    game.player.power_up_time = power_up.start_time + (power_up.duration * 600)
                 self.power_ups.remove(power_up)
 
 
